@@ -1,0 +1,42 @@
+﻿@page "/7Boom"
+
+<PageTitle>7Boom</PageTitle>
+
+<h1 class="shadow-lg">Seven Boom</h1>
+
+<div class="container">
+    <div class="row full-height">
+        <div class="col-lg-12 col-md-6 col-sm-6">
+            <p>
+                @for (int i = 1; i < 101; i++)
+                {
+                    <span>
+                        <span style="@(IsNumBoom(i) == "Boom" ? "color: red;" : "color: inherit;")">@IsNumBoom(i)</span>
+                        <span></span>
+                    </span>
+                }
+            </p>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    public static string IsNumBoom(int num)
+    {
+        if ((num % 7 == 0) || Contain7(num))
+            return "Boom";
+        return num.ToString();
+    }
+
+    public static bool Contain7(int num)
+    {
+        while (num != 0)
+        {
+            if (num % 10 == 7)
+                return true;
+            num = num / 10;
+        }
+        return false;
+    }
+}
